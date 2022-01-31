@@ -8,6 +8,20 @@ const questions = () => {
     return inquirer
         .prompt([
             {
+                //creator name
+                type: 'input',
+                name: 'name',
+                message: 'What is your full name?',
+                validate: titleInput => {
+                    if (titleInput) {
+                        return true;
+                    } else {
+                        console.log('Please enter your name!');
+                        return false
+                    }
+                }
+            },
+            {
                 //project title
                 type: 'input',
                 name: 'title',
@@ -83,7 +97,7 @@ const questions = () => {
                 type: 'list',
                 name: 'license',
                 message: 'Which license would you like to use?',
-                choices: ['MIT License','Mozilla Public License 2.0','Apache License 2.0','Boost Software License 1.0','The Unlicense','GNU Affero General Public License v3.0 (GNU AGPLv3)','GNU General Public License v3.0 (GNU GPLv3)','GNU Lesser General Public License v3.0 (GNU LGPLv3)'],
+                choices: ['MIT License','Mozilla Public License 2.0','Apache License 2.0','Boost Software License 1.0','The Unlicense'],
                 validate: licenseInput => {
                     if (licenseInput) {
                         return true;
@@ -123,7 +137,7 @@ const questions = () => {
                     if (githubProfileInput) {
                         return true;
                     } else {
-                        console.log('Please enter your project description');
+                        console.log('Please enter your GitHub username!');
                         return false
                     }
                 }
@@ -137,7 +151,7 @@ const questions = () => {
                     if (emailAddressInput) {
                         return true;
                     } else {
-                        console.log('Please enter your project description');
+                        console.log('Please enter your email address!');
                         return false
                     }
                 }
@@ -145,13 +159,28 @@ const questions = () => {
         ])
 };
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// // TODO: Create a function to write README file
+function writeToFile(data) {
+    fs.writeFile('./dist/README.md', data, (err) => {
+        if (err) throw err;
+        console.log('README.md created! Check the dist folder to see your new file!');
+      });
+}
 
 // TODO: Create a function to initialize app
 function init() {
     questions()
-    .then(generateMarkdown);
+    .then(data => {
+        console.log(data)
+        return generateMarkdown(data)
+    })
+    .then(mdOutput => {
+        console.log(mdOutput)
+        writeToFile(mdOutput)
+    })
+    .catch(err => {
+        console.log(err)
+    });
 }
 
 // Function call to initialize app
