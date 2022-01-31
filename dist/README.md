@@ -1,11 +1,11 @@
 
-  # TEST PROJECT
+  # README.md Generator
 
   [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
   
   ## Description 
 
-  This is a fake test project. 
+  This is an app that creates a professional README.md file from user input through the command line.
   
   [Click here to see the GitHub repository for this project](https://github.com/DaniDelia253/readme-generator).
   
@@ -22,11 +22,11 @@
   
   ## Installation
   
-  Clone the code from GitHub.
+  Clone the code from GitHub, then run "npm install" from the command line.
   
   ## Usage 
   
-  Clone the code and get going! :) 
+  Run "node index.js" from the command line and respond to the prompts to provide information about your project. When information has been added, review it in the console, then view the finalized rEADME.md file in the /dist folder! 
   
   ## License
   
@@ -57,7 +57,7 @@
   
   ## Contributing
   
-  Open issues or pull requests.
+  Contribute by opening issues or submitting pull requests.
   
   ## Tests
   
